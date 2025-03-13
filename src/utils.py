@@ -2,9 +2,8 @@ import json
 import os
 from typing import List
 
-
-from src.product import Product
 from src.category import Category
+from src.product import Product
 
 
 def path_data() -> str:
@@ -38,5 +37,4 @@ if __name__ == "__main__":
     path_data_file = path_data()
     data_products = open_data_file(path_data_file)
     f = create_obj_from_json(data_products)
-    print (f[1].name)
-
+    print(f[1].name)
