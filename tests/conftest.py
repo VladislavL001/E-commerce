@@ -1,9 +1,10 @@
 from itertools import product
 from symtable import Class
 
-from src.product import Product
-from src.category import Category
 import pytest
+
+from src.category import Category
+from src.product import Product
 
 
 @pytest.fixture

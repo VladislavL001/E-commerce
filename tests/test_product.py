@@ -1,5 +1,9 @@
+import builtins
+
 import pytest
-from tests.conftest import product_1, product_2, product_3
+from unittest.mock import Mock
+
+from tests.conftest import Product, product_1, product_2, product_3
 
 
 def test_valid_product_1(product_1) -> None:
@@ -21,3 +25,30 @@ def test_valid_product_3(product_3) -> None:
     assert product_3.description == "1024GB, Синий"
     assert product_3.price == 31_000.0
     assert product_3.quantity == 14
+
+
+def test_valid_new_product(capsys: pytest.CaptureFixture, mocker: Mock) -> None:
+    new_product = Product.new_product(
+        {
+            "name": "Samsung Galaxy S23 Ultra",
+            "description": "256GB, Серый цвет, 200MP камера",
+            "price": 180000.0,
+            "quantity": 5,
+        }
+    )
+    assert new_product.name == "Samsung Galaxy S23 Ultra"
+    assert new_product.description == "256GB, Серый цвет, 200MP камера"
+    assert new_product.price == 180_000.0
+    assert new_product.quantity == 10
+
+    mock_input = mocker.patch("builtins.input", return_value="Y")
+    new_product.price = 800
+    assert new_product.price == 800
+
+    new_product.price = -100
+    captured = capsys.readouterr()
+    assert "Цена не должна быть нулевая или отрицательная" in captured.out
+
+    new_product.price = 0
+    captured = capsys.readouterr()
+    assert "Цена не должна быть нулевая или отрицательная" in captured.out
