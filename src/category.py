@@ -21,9 +21,23 @@ class Category:
         Category.numb_of_products += 1
 
     @property
+    def products_in_list(self):
+        return self.__products
+
+    @property
     def products(self) -> str:
         """Возвращает список товаров"""
         product_str = ""
         for product in self.__products:
-            product_str += f"Название продукта: {product.name} руб. Остаток: {product.quantity} шт.\n"
+            product_str += f"{str(product)}\n"
         return product_str
+
+    @property
+    def summ_products_category(self):
+        summ = 0
+        for product in self.__products:
+            summ += product.quantity
+        return summ
+
+    def __str__(self):
+        return f"{self.name}, количество продуктов: {self.summ_products_category} шт."

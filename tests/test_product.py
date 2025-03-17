@@ -1,9 +1,8 @@
-import builtins
-
-import pytest
 from unittest.mock import Mock
 
-from tests.conftest import Product, product_1, product_2, product_3
+import pytest
+
+from src.product import Product
 
 
 def test_valid_product_1(product_1) -> None:
@@ -41,7 +40,7 @@ def test_valid_new_product(capsys: pytest.CaptureFixture, mocker: Mock) -> None:
     assert new_product.price == 180_000.0
     assert new_product.quantity == 10
 
-    mock_input = mocker.patch("builtins.input", return_value="Y")
+    mock_input = mocker.patch("builtins.input", return_value="Y") # noqa
     new_product.price = 800
     assert new_product.price == 800
 
@@ -52,3 +51,14 @@ def test_valid_new_product(capsys: pytest.CaptureFixture, mocker: Mock) -> None:
     new_product.price = 0
     captured = capsys.readouterr()
     assert "Цена не должна быть нулевая или отрицательная" in captured.out
+
+
+def test_valid_product_add(product_1, product_2, product_3):
+    assert product_1 + product_2 == "2580000.0 руб."
+    assert product_1 + product_3 == "1334000.0 руб."
+
+
+def test_valid_product_str(product_1, product_2, product_3) -> None:
+    assert str(product_1) == "Samsung Galaxy S23 Ultra: 180000.0 руб. Остаток: 5 шт."
+    assert str(product_2) == "Iphone 15: 210000.0 руб. Остаток: 8 шт."
+    assert str(product_3) == "Xiaomi Redmi Note 11: 31000.0 руб. Остаток: 14 шт."

@@ -1,7 +1,5 @@
 import pytest
 
-from tests.conftest import category_1, product_1, product_2, product_3
-
 
 def test_valid_category_1(category_1, product_1, product_2, product_3) -> None:
     assert category_1.name == "Смартфоны"
@@ -10,10 +8,14 @@ def test_valid_category_1(category_1, product_1, product_2, product_3) -> None:
         == "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни"
     )
     assert category_1.products == (
-        "Название продукта: Samsung Galaxy S23 Ultra руб. Остаток: 5 шт.\n"
-        "Название продукта: Iphone 15 руб. Остаток: 8 шт.\n"
-        "Название продукта: Xiaomi Redmi Note 11 руб. Остаток: 14 шт.\n"
+        "Samsung Galaxy S23 Ultra: 180000.0 руб. Остаток: 5 шт.\n"
+        "Iphone 15: 210000.0 руб. Остаток: 8 шт.\n"
+        "Xiaomi Redmi Note 11: 31000.0 руб. Остаток: 14 шт.\n"
     )
 
-    assert category_1.num_of_categories == 1
-    assert category_1.numb_of_products == 3
+    assert category_1.num_of_categories == 2
+    assert category_1.numb_of_products == 6
+
+
+def test_valid_print_category(capsys: pytest.CaptureFixture, category_1) -> None:
+    assert str(category_1) == "Смартфоны, количество продуктов: 27 шт."

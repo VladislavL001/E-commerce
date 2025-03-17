@@ -42,10 +42,10 @@ def test_create_obj_from_json_valid() -> None:
     assert obj_category[0].name == "Смартфоны"
 
     assert obj_category[0].products == (
-        "Название продукта: Samsung Galaxy C23 Ultra руб. Остаток: 5 шт.\n"
-        "Название продукта: Iphone 15 руб. Остаток: 8 шт.\n"
-        "Название продукта: Xiaomi Redmi Note 11 руб. Остаток: 14 шт.\n"
+        "Samsung Galaxy C23 Ultra: 180000.0 руб. Остаток: 5 шт.\n"
+        "Iphone 15: 210000.0 руб. Остаток: 8 шт.\n"
+        "Xiaomi Redmi Note 11: 31000.0 руб. Остаток: 14 шт.\n"
     )
 
     assert obj_category[1].name == "Телевизоры"
-    assert obj_category[1].products == 'Название продукта: 55" QLED 4K руб. Остаток: 7 шт.\n'
+    assert obj_category[1].products == '55" QLED 4K: 123000.0 руб. Остаток: 7 шт.\n'

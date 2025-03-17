@@ -1,6 +1,3 @@
-from itertools import product
-from symtable import Class
-
 import pytest
 
 from src.category import Category
