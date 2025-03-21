@@ -17,8 +17,11 @@ class Category:
 
     def add_product(self, product: Product) -> None:
         """Добавляет продукт в категорию"""
-        self.__products.append(product)
-        Category.numb_of_products += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.numb_of_products += 1
+        else:
+            raise TypeError
 
     @property
     def products_in_list(self):
