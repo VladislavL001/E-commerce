@@ -46,4 +46,23 @@ class Product:
         return f"{self.name}: {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        return f"{self.__price * self.quantity + other.__price * other.quantity} руб."
+        if type(other) == type(self): # noqa
+            return f"{self.__price * self.quantity + other.__price * other.quantity} руб."
+        raise TypeError
+
+
+class Smartphone(Product):
+    def __init__(self, name, description, price, quantity, efficiency, model, memory, color) -> None:
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    def __init__(self, name, description, price, quantity, country, germination_period, color) -> None:
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color

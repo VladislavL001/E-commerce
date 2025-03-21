@@ -1,5 +1,7 @@
 import pytest
 
+from src.category import Category
+
 
 def test_valid_category_1(category_1, product_1, product_2, product_3) -> None:
     assert category_1.name == "Смартфоны"
@@ -19,3 +21,9 @@ def test_valid_category_1(category_1, product_1, product_2, product_3) -> None:
 
 def test_valid_print_category(capsys: pytest.CaptureFixture, category_1) -> None:
     assert str(category_1) == "Смартфоны, количество продуктов: 27 шт."
+
+
+def test_valid_add_category(smartphone1, smartphone2) -> None:
+    category_smartphones = Category("Смартфоны", "Высокотехнологичные смартфоны", [smartphone1, smartphone2])
+    with pytest.raises(TypeError):
+        category_smartphones.add_product("Not a product") # noqa
