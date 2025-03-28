@@ -1,7 +1,7 @@
 from src.product import Product
+from src.baseclass import baseclass
 
-
-class Category:
+class Category(baseclass):
     """Категории товаров"""
 
     num_of_categories = 0
