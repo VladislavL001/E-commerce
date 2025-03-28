@@ -1,10 +1,9 @@
+import unittest
 from unittest.mock import Mock
 
 import pytest
 
-from src.product import Product, BaseProduct
-
-import unittest
+from src.product import BaseProduct, Product
 
 
 def test_valid_product_1(product_1) -> None:
@@ -135,4 +134,3 @@ def test_valid_base_product() -> None:
         def test_new_product(self):
             product = ConcreteProduct.new_product("Laptop", 1000)
             self.assertEqual(product, {"name": "Laptop", "price": 1000})
-

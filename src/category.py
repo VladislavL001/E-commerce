@@ -1,5 +1,6 @@
-from src.product import Product
 from src.baseclass import baseclass
+from src.product import Product
+
 
 class Category(baseclass):
     """Категории товаров"""
