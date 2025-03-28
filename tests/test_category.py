@@ -26,4 +26,4 @@ def test_valid_print_category(capsys: pytest.CaptureFixture, category_1) -> None
 def test_valid_add_category(smartphone1, smartphone2) -> None:
     category_smartphones = Category("Смартфоны", "Высокотехнологичные смартфоны", [smartphone1, smartphone2])
     with pytest.raises(TypeError):
-        category_smartphones.add_product("Not a product") # noqa
+        category_smartphones.add_product("Not a product")  # noqa

@@ -1,4 +1,22 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class BaseProduct(ABC):
+    @classmethod
+    @abstractmethod
+    def new_product(cls, *args, **kwargs):
+        pass
+
+
+class PrintMixin:
+    def __init__(self):
+        print(repr(self))
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.name}', {self.description}, {self.price}, {self.quantity})"  # noqa
+
+
+class Product(BaseProduct, PrintMixin):
     """Товары"""
 
     products_list: list = []
@@ -10,6 +28,7 @@ class Product:
         self.__price = price
         self.quantity = quantity
         Product.products_list.append(self)
+        super().__init__()
 
     @property
     def price(self) -> None:
@@ -46,7 +65,7 @@ class Product:
         return f"{self.name}: {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        if type(other) == type(self): # noqa
+        if type(other) == type(self):  # noqa
             return f"{self.__price * self.quantity + other.__price * other.quantity} руб."
         raise TypeError
 

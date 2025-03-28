@@ -1,8 +1,9 @@
+import unittest
 from unittest.mock import Mock
 
 import pytest
 
-from src.product import Product
+from src.product import BaseProduct, Product
 
 
 def test_valid_product_1(product_1) -> None:
@@ -120,3 +121,16 @@ def test_add_products(smartphone1, smartphone2, grass1, grass2):
 
     with pytest.raises(TypeError):
         smartphone1 + grass1
+
+
+def test_valid_base_product() -> None:
+    class ConcreteProduct(BaseProduct):
+        @classmethod
+        def new_product(cls, name, price):
+            return {"name": name, "price": price}
+
+    # Тестовый класс для проверки BaseProduct
+    class TestBaseProduct(unittest.TestCase):
+        def test_new_product(self):
+            product = ConcreteProduct.new_product("Laptop", 1000)
+            self.assertEqual(product, {"name": "Laptop", "price": 1000})
