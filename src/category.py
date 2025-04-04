@@ -45,3 +45,14 @@ class Category(baseclass):
 
     def __str__(self):
         return f"{self.name}, количество продуктов: {self.summ_products_category} шт."
+
+    def middle_price(self):
+        summ = 0
+        try:
+            for product in self.__products:
+                summ += product.price
+            avg_price = round(summ/len(self.__products))
+            return avg_price
+        except ZeroDivisionError:
+            print("Отсутствуют продукты в списке!")
+            return 0

@@ -28,6 +28,8 @@ class Product(BaseProduct, PrintMixin):
         self.__price = price
         self.quantity = quantity
         Product.products_list.append(self)
+        if self.quantity == 0:
+            raise ValueError ("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
 
     @property
