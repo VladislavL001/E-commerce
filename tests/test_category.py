@@ -27,3 +27,10 @@ def test_valid_add_category(smartphone1, smartphone2) -> None:
     category_smartphones = Category("Смартфоны", "Высокотехнологичные смартфоны", [smartphone1, smartphone2])
     with pytest.raises(TypeError):
         category_smartphones.add_product("Not a product")  # noqa
+
+def test_error_category_class_category_empty() -> None:
+    category_empty = Category("Пустая категория", "Категория без продуктов", [])
+    assert category_empty.middle_price() == 0
+
+def test_valid_category_class_category_empty(category_1, product_1, product_2, product_3) -> None:
+    assert category_1.middle_price() == 140333

@@ -134,3 +134,7 @@ def test_valid_base_product() -> None:
         def test_new_product(self):
             product = ConcreteProduct.new_product("Laptop", 1000)
             self.assertEqual(product, {"name": "Laptop", "price": 1000})
+
+def test_error_product_class() -> None:
+    with pytest.raises(ValueError):
+        product_error = Product("Бракованный товар", "Неверное количество", 1000.0, 0)
